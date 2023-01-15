@@ -28,10 +28,15 @@ function playRound(playerSelection, computerSelection) {
     : `You Lose! ${computerSelection} beats ${playerSelection}`
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt("Choose rock, paper or scissors:\n")
-    const computerSelection = getComputerChoice()
-    console.log(playRound(playerSelection, computerSelection))
-  }
+function clicked(e){
+  const playerSelection = e.target.id
+  const computerSelection = getComputerChoice()
+  const roundResult = playRound(playerSelection, computerSelection)
+  document.querySelector('#player-choice').textContent = "You chose: " + playerSelection
+  document.querySelector('#computer-choice').textContent = "The computer chose: " + computerSelection
+  document.querySelector('#winner-text').textContent = "Result: " + roundResult
 }
+
+const buttons = document
+  .querySelectorAll('button')
+  .forEach((button) => button.addEventListener('click', clicked))
